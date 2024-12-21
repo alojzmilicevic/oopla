@@ -1,0 +1,151 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Kram",
+            "price": 0,
+            "description": "En varm och mysig kram.",
+            "icon": "🤗"
+        },
+        {
+            "id": 2,
+            "name": "Macka",
+            "price": 0,
+            "description": "En god smörgås, färdig att äta.",
+            "icon": "🥪"
+        },
+        {
+            "id": 3,
+            "name": "Vatten",
+            "price": 0,
+            "description": "Ett glas friskt vatten.",
+            "icon": "💧"
+        },
+        {
+            "id": 4,
+            "name": "Cola",
+            "price": 0,
+            "description": "En kall och uppfriskande Cola.",
+            "icon": "🥤"
+        },
+        {
+            "id": 5,
+            "name": "Handla något från affären",
+            "price": 0,
+            "description": "Hämta något från din favoritbutik.",
+            "icon": "🛒"
+        },
+        {
+            "id": 6,
+            "name": "Ta hand om barn",
+            "price": 0,
+            "description": "Hjälp med att ta hand om barnen.",
+            "icon": "🍼"
+        },
+        {
+            "id": 7,
+            "name": "Massage",
+            "price": 0,
+            "description": "En avslappnande massage.",
+            "icon": "💆"
+        },
+        {
+            "id": 8,
+            "name": "Hämta en filt",
+            "price": 0,
+            "description": "Hämta en mysig filt för dig.",
+            "icon": "🛏️"
+        },
+        {
+            "id": 9,
+            "name": "Göra kaffe",
+            "price": 0,
+            "description": "En perfekt kopp kaffe till dig.",
+            "icon": "☕"
+        },
+        {
+            "id": 10,
+            "name": "Berätta en rolig historia",
+            "price": 0,
+            "description": "En rolig historia för att få dig att skratta.",
+            "icon": "😂"
+        },
+        {
+            "id": 11,
+            "name": "Lyssna och prata",
+            "price": 0,
+            "description": "Full uppmärksamhet och ett samtal.",
+            "icon": "🗣️"
+        },
+        {
+            "id": 12,
+            "name": "Ladda mobilen",
+            "price": 0,
+            "description": "Se till att din mobil är fulladdad.",
+            "icon": "🔌"
+        },
+        {
+            "id": 13,
+            "name": "Titta på film",
+            "price": 0,
+            "description": "En mysig filmkväll tillsammans.",
+            "icon": "🎥"
+        },
+        {
+            "id": 14,
+            "name": "Gå en promenad",
+            "price": 0,
+            "description": "En härlig promenad tillsammans.",
+            "icon": "🚶"
+        },
+        {
+            "id": 15,
+            "name": "Vattna blommor",
+            "price": 0,
+            "description": "Ta hand om dina växter.",
+            "icon": "🌱"
+        },
+        {
+            "id": 16,
+            "name": "Ta blöja",
+            "price": 0,
+            "description": "Hjälp med att byta blöja.",
+            "icon": "🍼"
+        },
+        {
+            "id": 17,
+            "name": "Rensa kattlåda",
+            "price": 0,
+            "description": "Se till att kattlådan är ren och fräsch.",
+            "icon": "🐾"
+        },
+        {
+            "id": 18,
+            "name": "Ge huvudmassage",
+            "price": 0,
+            "description": "En avkopplande huvudmassage.",
+            "icon": "💆‍♀️"
+        },
+        {
+            "id": 19,
+            "name": "Dusch",
+            "price": 0,
+            "description": "Se till att duschen är klar för användning.",
+            "icon": "🚿"
+        },
+        {
+            "id": 20,
+            "name": "Kolla på TikTok",
+            "price": 0,
+            "description": "En stund att titta på TikTok tillsammans.",
+            "icon": "📱"
+        },
+        {
+            "id": 21,
+            "name": "Puss på pannan",
+            "price": 0,
+            "description": "En kärleksfull puss på pannan.",
+            "icon": "😘"
+        }
+    ]
+}
