@@ -1,18 +1,23 @@
 import { Stack } from "@mui/material";
 import { ProductCard } from "../components/ProductCard";
-import data from "../../mock/product.mock.json";
 import { AppState } from "../../App";
 
-type ProductsProps = Pick<AppState, "addToCart">;
+type ProductsProps = Pick<AppState, "addToCart" | "products" | "shoppingCart">;
 
-export const Products = ({ addToCart }: ProductsProps) => {
+export const Products = ({
+    addToCart,
+    products,
+    shoppingCart,
+}: ProductsProps) => {
     return (
-        <Stack spacing={1} padding={2} sx={{marginBottom: 10}}>
-            {data.products.map((product) => (
+        <Stack spacing={1} padding={2} sx={{ marginBottom: 10 }}>
+            {products.map((product) => (
                 <ProductCard
                     key={product.id}
-                    {...product}
+                    product={product}
                     addToCart={addToCart}
+
+                    quantity={shoppingCart[product.id]}
                 />
             ))}
         </Stack>

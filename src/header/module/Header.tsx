@@ -1,14 +1,11 @@
 import { Card, CardHeader } from "@mui/material";
 import { Banner } from "../components/Banner";
 import { Navbar } from "../components/NavBar";
-import { AppState } from "../../App";
 
-type HeaderProps = Pick<AppState, "shoppingCart">;
-
-export const Header = ({ shoppingCart }: HeaderProps) => {
+export const Header = () => {
     return (
         <>
-            <Navbar shoppingCart={shoppingCart} />
+            <Navbar />
             <Banner />
             <Card variant="outlined">
                 <CardHeader

@@ -1,32 +1,52 @@
-import { useState } from "react";
+import { OrdersButton } from "./components/OrdersButton";
 import { Header } from "./header/module/Header";
+import { AddToCartModal } from "./products/components/AddToCartModal";
+import { Product } from "./products/interface/interface";
 import { Products } from "./products/module/Products";
-import { Button } from "@mui/material";
-import ArticleIcon from '@mui/icons-material/Article';
+import { SummaryModal } from "./products/components/SummaryModal";
+import { useApp } from "./useApp";
+
 export type AppState = {
     shoppingCart: number[];
-    addToCart: (id: number) => void;
+    addToCart: (product: Product) => void;
+    products: Product[];
 };
 
 function App() {
-    const [shoppingCart, setShoppingCart] = useState<number[]>([]);
-
-    const addToCart = (id: number) => {
-        setShoppingCart([...shoppingCart, id]);
-    };
-
-    const removeFromCart = (id: number) => {
-        setShoppingCart(shoppingCart.filter((itemId) => itemId !== id));
-    };
+    const {
+        openProductModal,
+        products,
+        shoppingCart,
+        setIsOpenSummaryModal,
+        productModalData,
+        addToCart,
+        removeFromCart,
+        data,
+        isOpenSummaryModal,
+        closeProductModal,
+        showOrdersButton,
+    } = useApp();
 
     return (
         <>
-            <Header shoppingCart={shoppingCart} />
-            <Products addToCart={addToCart} />
-            <Button variant={"contained"} size="small" color="primary" sx={{ position: "fixed", left: "50%",transform: "translateX(-50%)", bottom: 16, padding: 2, width: "90%" }}>
-                <ArticleIcon style={{marginRight: 8}}/>
-                Se Beställning
-            </Button>
+            <Header />
+            <Products
+                addToCart={openProductModal}
+                products={products}
+                shoppingCart={shoppingCart}
+            />
+            { showOrdersButton && <OrdersButton onClick={() => setIsOpenSummaryModal(true)} /> }
+            <AddToCartModal
+                handleClose={closeProductModal}
+                product={productModalData}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+            />
+            <SummaryModal
+                data={data}
+                isOpenSummaryModal={isOpenSummaryModal}
+                setIsOpenSummaryModal={setIsOpenSummaryModal}
+            />
         </>
     );
 }

@@ -1,6 +1,4 @@
 import { AppBar, styled, Toolbar, Typography } from "@mui/material";
-import ShoppingBasket from "../../components/ShoppingBasket";
-import { AppState } from "../../App";
 
 const StyledAppBar = styled(AppBar)`
     user-select: none;
@@ -9,9 +7,8 @@ const StyledAppBar = styled(AppBar)`
     color: ${(props) => props.theme.palette.primary.main};
 `;
 
-type NavbarProps = Pick<AppState, "shoppingCart">;
 
-export const Navbar = ({ shoppingCart }: NavbarProps) => (
+export const Navbar = () => (
     <StyledAppBar position="static">
         <Toolbar sx={{ justifyContent: "space-between" }}>
             <Typography
@@ -23,7 +20,6 @@ export const Navbar = ({ shoppingCart }: NavbarProps) => (
             >
                 Oopla
             </Typography>
-            <ShoppingBasket count={shoppingCart.length} />
         </Toolbar>
     </StyledAppBar>
 );
