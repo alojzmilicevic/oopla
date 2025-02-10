@@ -2,11 +2,13 @@ import { AppBar, styled, Toolbar, Typography } from "@mui/material";
 
 const StyledAppBar = styled(AppBar)`
     user-select: none;
-    background-color: ${(props) => props.theme.palette.background.paper};
+    background-color: ${(props) => props.theme.palette.secondary.main};
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     box-shadow: none;
     color: ${(props) => props.theme.palette.primary.main};
 `;
-
 
 export const Navbar = () => (
     <StyledAppBar position="static">

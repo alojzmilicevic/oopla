@@ -1,53 +1,35 @@
+import { styled } from "@mui/material";
 import { OrdersButton } from "./components/OrdersButton";
 import { Header } from "./header/module/Header";
-import { AddToCartModal } from "./products/components/AddToCartModal";
-import { Product } from "./products/interface/interface";
+import { Orders } from "./orders/module/Orders";
+import { AddToCartModal } from "./add-to-cart-modal/module/AddToCartModal";
+import { SummaryModal } from "./summary-modal/module/SummaryModal";
 import { Products } from "./products/module/Products";
-import { SummaryModal } from "./products/components/SummaryModal";
 import { useApp } from "./useApp";
 
-export type AppState = {
-    shoppingCart: number[];
-    addToCart: (product: Product) => void;
-    products: Product[];
-};
+const OrderBox = styled("div")<{bottom: number}>(({ bottom }) => ({
+    position: "fixed",
+    bottom: bottom || 0,
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+}));
 
 function App() {
-    const {
-        openProductModal,
-        products,
-        shoppingCart,
-        setIsOpenSummaryModal,
-        productModalData,
-        addToCart,
-        removeFromCart,
-        data,
-        isOpenSummaryModal,
-        closeProductModal,
-        showOrdersButton,
-    } = useApp();
+    const { latestOrder } = useApp();
 
     return (
-        <>
+        <div>
             <Header />
-            <Products
-                addToCart={openProductModal}
-                products={products}
-                shoppingCart={shoppingCart}
-            />
-            { showOrdersButton && <OrdersButton onClick={() => setIsOpenSummaryModal(true)} /> }
-            <AddToCartModal
-                handleClose={closeProductModal}
-                product={productModalData}
-                addToCart={addToCart}
-                removeFromCart={removeFromCart}
-            />
-            <SummaryModal
-                data={data}
-                isOpenSummaryModal={isOpenSummaryModal}
-                setIsOpenSummaryModal={setIsOpenSummaryModal}
-            />
-        </>
+            <Products />
+            <AddToCartModal />
+            <SummaryModal />
+            <OrderBox bottom={latestOrder ? 56: 0}>
+                <OrdersButton />
+                {latestOrder && <Orders latestOrder={latestOrder} />}
+            </OrderBox>
+        </div>
     );
 }
 

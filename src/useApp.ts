@@ -1,41 +1,17 @@
-import { useState } from "react";
-import productData from "./mock/product.mock.json";
-import { useCartModal } from "./products/hooks/useCartModal";
-import { useSummaryModal } from "./products/hooks/useSummaryModal";
-import { Product } from "./products/interface/interface";
+import { useEffect } from "react";
+import { subscribeToOrders } from "./firebase/subscribeToOrder";
+import { getOrderWithLatestDate } from "./orders/store/ordersSlice";
+import { fetchProducts } from "./products/store/productStore";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
 
 export function useApp() {
-    const products = productData.products as Product[];
+    const dispatch = useAppDispatch();
+    const latestOrder = useAppSelector(getOrderWithLatestDate);
 
-    const [shoppingCart, setShoppingCart] = useState<number[]>(
-        Array(products.length).fill(0)
-    );
+    useEffect(() => {
+        dispatch(fetchProducts()); 
+        subscribeToOrders(dispatch);
+    }, []);
 
-    const {
-        openProductModal,
-        closeProductModal,
-        productModalData,
-        addToCart,
-        removeFromCart,
-    } = useCartModal({ shoppingCart, setShoppingCart });
-
-    const { data, isOpenSummaryModal, setIsOpenSummaryModal } = useSummaryModal(
-        { products, shoppingCart }
-    );
-
-    const showOrdersButton = shoppingCart.some((amount) => amount > 0);
-
-    return {
-        openProductModal,
-        products,
-        shoppingCart,
-        setIsOpenSummaryModal,
-        productModalData,
-        addToCart,
-        removeFromCart,
-        data,
-        isOpenSummaryModal,
-        closeProductModal,
-        showOrdersButton,
-    };
+    return { latestOrder };
 }

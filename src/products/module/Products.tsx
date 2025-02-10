@@ -1,23 +1,33 @@
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
+import { uploadToNewCollection } from "../../firebase/uploadProducts";
+import { useAppSelector } from "../../store/hooks";
 import { ProductCard } from "../components/ProductCard";
-import { AppState } from "../../App";
+import { getProducts, getShoppingCart } from "../store/productStore";
 
-type ProductsProps = Pick<AppState, "addToCart" | "products" | "shoppingCart">;
+export const Products = () => {
+    const products = useAppSelector(getProducts);
+    const shoppingCart = useAppSelector(getShoppingCart);
 
-export const Products = ({
-    addToCart,
-    products,
-    shoppingCart,
-}: ProductsProps) => {
+    if (!products)
+        return (
+            <Button
+                onClick={() => {
+                    uploadToNewCollection();
+                }}
+            >
+                Upload Products
+            </Button>
+        );
     return (
         <Stack spacing={1} padding={2} sx={{ marginBottom: 10 }}>
             {products.map((product) => (
                 <ProductCard
                     key={product.id}
                     product={product}
-                    addToCart={addToCart}
-
-                    quantity={shoppingCart[product.id]}
+                    quantity={
+                        shoppingCart.find((i) => i.id === product.id)
+                            ?.quantity || 0
+                    }
                 />
             ))}
         </Stack>
