@@ -8,13 +8,12 @@ import { getMessaging } from "firebase/messaging";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAALJ9LcStIfofMxbkjv0tR8qRDG-ZOim8",
-  authDomain: "oopla-services.firebaseapp.com",
-  projectId: "oopla-services",
-  storageBucket: "oopla-services.firebasestorage.app",
-  messagingSenderId: "299783267316",
-  appId: "1:299783267316:web:8da150d0534d590a1bcfa1",
-  measurementId: "G-8G76QQZRSV"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
