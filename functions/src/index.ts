@@ -68,19 +68,34 @@ export const deleteOrderOnCompleted = firestore.onDocumentUpdated(
     }
 );
 
-// Allowed emails (You can store this in Firestore instead)
-const ALLOWED_EMAILS = ["alomi136@gmail.com", "almacederblad96@gmail.com"];
-
-export const beforeUserIsCreated = beforeUserCreated((event) => {
+export const beforeUserIsCreated = beforeUserCreated(async (event) => {
     const user = event.data;
 
-    if (!user || !user.email) {
-        throw new HttpsError("invalid-argument", "User data is required");
+    if (!user?.email) {
+        throw new HttpsError("invalid-argument", "User email is required.");
     }
 
-    if (!ALLOWED_EMAILS.includes(user.email)) {
-        throw new HttpsError("permission-denied", "Email is not allowed");
-    }
+    try {
+        // ✅ Correct way to fetch a single document in Firestore (Firebase Admin SDK)
+        const docRef = db.collection("config").doc("email-whitelist");
+        const docSnap = await docRef.get();
 
-    return event.data;
+        if (!docSnap.exists) {
+            console.warn("No whitelist found. Blocking all new users.");
+            throw new HttpsError("permission-denied", "No email whitelist found.");
+        }
+
+        // ✅ Extract the email list from Firestore
+        const allowedEmails: string[] = docSnap.data()?.emails || [];
+
+        // 🔍 Check if user's email is in the whitelist
+        if (!allowedEmails.includes(user.email)) {
+            throw new HttpsError("permission-denied", "Your email is not allowed.");
+        }
+
+        return user; // ✅ Allow user creation if email is whitelisted
+    } catch (error) {
+        console.error("Error fetching whitelist:", error);
+        throw new HttpsError("internal", "Error checking email whitelist.");
+    }
 });
