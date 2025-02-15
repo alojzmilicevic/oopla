@@ -153,11 +153,11 @@ export const {
     closeSummaryModal,
     updateCartItemQuantity,
 } = productSlice.actions;
-export const getProducts = (state: RootState) => state.productStore.products;
+export const getProducts = (state: RootState) => state.products.products;
 export const getShoppingCart = (state: RootState) =>
-    state.productStore.shoppingCart;
+    state.products.shoppingCart;
 
 export const getSelectedProduct = (state: RootState) =>
-    state.productStore.selectedProduct;
+    state.products.selectedProduct;
 export const getIsOpenSummaryModal = (state: RootState) =>
-    state.productStore.summaryModalOpen;
+    state.products.summaryModalOpen;

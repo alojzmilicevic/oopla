@@ -1,4 +1,6 @@
-import { AppBar, styled, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, styled, Toolbar, Typography } from "@mui/material";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 const StyledAppBar = styled(AppBar)`
     user-select: none;
@@ -22,6 +24,15 @@ export const Navbar = () => (
             >
                 Oopla
             </Typography>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                    signOut(auth);
+                }}
+            >
+                Log out
+            </Button>
         </Toolbar>
     </StyledAppBar>
 );

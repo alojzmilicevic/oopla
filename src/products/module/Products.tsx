@@ -1,23 +1,15 @@
-import { Button, Stack } from "@mui/material";
-import { uploadToNewCollection } from "../../firebase/uploadProducts";
+import { Stack } from "@mui/material";
 import { useAppSelector } from "../../store/hooks";
 import { ProductCard } from "../components/ProductCard";
 import { getProducts, getShoppingCart } from "../store/productStore";
+import { ProductsSkeleton } from "./ProductsSkeleton";
 
 export const Products = () => {
     const products = useAppSelector(getProducts);
     const shoppingCart = useAppSelector(getShoppingCart);
 
-    if (!products)
-        return (
-            <Button
-                onClick={() => {
-                    uploadToNewCollection();
-                }}
-            >
-                Upload Products
-            </Button>
-        );
+    if (!products || products.length === 0) return <ProductsSkeleton />;
+
     return (
         <Stack spacing={1} padding={2} sx={{ marginBottom: 10 }}>
             {products.map((product) => (
@@ -33,3 +25,4 @@ export const Products = () => {
         </Stack>
     );
 };
+
