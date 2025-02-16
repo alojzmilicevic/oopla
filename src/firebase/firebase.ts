@@ -12,6 +12,8 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID || process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
+console.log(process.env);
+
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app); // Export auth for use in your app
