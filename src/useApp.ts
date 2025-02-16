@@ -1,10 +1,10 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { getUser, loginSuccess, logoutSuccess } from "./auth/store/authSlice";
 import { auth } from "./firebase/firebase";
 import { subscribeToOrders } from "./firebase/subscribeToOrder";
-import { fetchProducts } from "./products/store/productStore";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { fetchProducts } from "./functions/products/store/productStore";
+import { getUser, loginSuccess, logoutSuccess } from "./functions/auth/store/authSlice";
 
 export function useApp() {
     const dispatch = useAppDispatch();

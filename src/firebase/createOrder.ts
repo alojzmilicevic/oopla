@@ -1,6 +1,6 @@
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "./firebase"; // Path to your Firebase config
-import { OrderItemDto } from "../orders/interface/interface";
+import { db } from "./firebase"; 
+import { OrderItemDto } from "../functions/orders/interface/interface";
 
 export async function createOrder(items: OrderItemDto[]): Promise<void> {
     try {

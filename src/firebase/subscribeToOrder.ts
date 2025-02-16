@@ -1,8 +1,8 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { collection, onSnapshot, Timestamp } from "firebase/firestore";
-import { Order } from "../orders/interface/interface";
-import { updateOrders } from "../orders/store/ordersSlice";
 import { db } from "./firebase";
+import { Order } from "../functions/orders/interface/interface";
+import { updateOrders } from "../functions/orders/store/ordersSlice";
 
 export const subscribeToOrders = (dispatch: Dispatch) => {
     const ordersCollection = collection(db, "orders");

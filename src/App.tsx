@@ -4,10 +4,10 @@ import {
     BrowserRouter as Router,
     Routes,
 } from "react-router";
-import { Login } from "./auth/modules/Login";
-import { Home } from "./home/Home";
+import { Home } from "./functions/home/module/Home";
 import { useApp } from "./useApp";
 import { AppSkeleton } from "./AppSkeleton";
+import { Login } from "./functions/auth/modules/Login";
 
 function App() {
     const { user, loading } = useApp();
